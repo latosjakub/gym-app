@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: workout-app   # nazwa aplikacji (może być dowolna)
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/todo_DB  # adres bazy
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # tryb tworzenia schematu: create, create-drop, update, validate
+    show-sql: true       # logowanie zapytań SQL
+    properties:
+      hibernate:
+        format_sql: true # ładne formatowanie SQL w logach
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+logging:
+  level:
+    org.hibernate.type.descriptor.sql: trace
+
+apiKeys:
+  telegrambot.name: "ALA"
+  telegrambot.token:
