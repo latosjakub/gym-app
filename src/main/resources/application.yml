@@ -1,20 +1,20 @@
 spring:
   application:
-    name: workout-app   # nazwa aplikacji (może być dowolna)
+    name: workout-app
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/todo_DB  # adres bazy
+    url: jdbc:postgresql://localhost:5431/postgres
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: update   # tryb tworzenia schematu: create, create-drop, update, validate
-    show-sql: true       # logowanie zapytań SQL
+      ddl-auto: create-drop
+    show-sql: true
     properties:
       hibernate:
-        format_sql: true # ładne formatowanie SQL w logach
+        format_sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 logging:
   level:

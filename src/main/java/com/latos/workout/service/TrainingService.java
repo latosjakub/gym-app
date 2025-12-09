@@ -1,7 +1,7 @@
 package com.latos.workout.service;
 
-import com.latos.workout.dto.AddExercisesToTrainingRequest;
-import com.latos.workout.dto.TrainingExerciseItemRequest;
+import com.latos.workout.dto.exercise.AddExercisesToTrainingRequest;
+import com.latos.workout.dto.training.TrainingExerciseItemRequest;
 import com.latos.workout.model.Exercise;
 import com.latos.workout.model.Training;
 import com.latos.workout.model.TrainingExercise;

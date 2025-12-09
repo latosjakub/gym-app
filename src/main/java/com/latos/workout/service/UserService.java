@@ -1,6 +1,8 @@
 package com.latos.workout.service;
 
-import com.latos.workout.dto.CreateUserRequest;
+import com.latos.workout.dto.user.UserCreateRequest;
+import com.latos.workout.dto.user.UserProfileDto;
+import com.latos.workout.dto.user.UserResponse;
 import com.latos.workout.model.User;
 import com.latos.workout.model.UserProfile;
 import com.latos.workout.repository.UserProfileRepository;
@@ -22,12 +24,8 @@ public class UserService {
     }
 
 
-    public User createUserWithProfile(CreateUserRequest createUserRequest) {
+    public UserResponse createUserWithProfile(UserCreateRequest createUserRequest) {
         UserProfile profile = new UserProfile(
-                createUserRequest.getFirstName(),
-                createUserRequest.getLasName(),
-                createUserRequest.getAge(),
-                createUserRequest.getWeight()
         );
 
         User newUser = new User(
@@ -37,12 +35,29 @@ public class UserService {
                 profile
         );
 
-        return userRepository.save(newUser);
+        return userToUserResponse(userRepository.save(newUser));
     }
 
-    public Optional<User> getUser(Long id) {
-        return userRepository.findById(id);
+    public UserResponse userToUserResponse(User user){
+        return new UserResponse(
+                user.getId(),
+                user.getUsername(),
+                user.getEmail(),
+                userProfileToUserProfileDto(user.getProfile())
+        );
     }
+
+    public UserProfileDto userProfileToUserProfileDto(UserProfile userProfile){
+        return new UserProfileDto(
+                userProfile.getName(),
+                userProfile.getLastname(),
+                userProfile.getAge(),
+                userProfile.getWeight()
+        );
+    }
+
+
+
 
     public Optional<UserProfile> updateUserProfile(Long id, UserProfile userProfile) {
         Optional<User> userOpt = userRepository.findById(id);
@@ -76,5 +91,14 @@ public class UserService {
         userRepository.deleteById(id);
 
 
+    }
+
+    public Optional<UserResponse> getUserWithProfile(Long id) {
+        Optional<User> user = userRepository.findById(id);
+
+        if(user.isEmpty()){
+            return Optional.empty();
+        }
+        return Optional.of(userToUserResponse(user.get()));
     }
 }

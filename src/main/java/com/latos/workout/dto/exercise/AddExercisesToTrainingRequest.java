@@ -1,6 +1,7 @@
-package com.latos.workout.dto;
+package com.latos.workout.dto.exercise;
 
-import java.util.ArrayList;
+import com.latos.workout.dto.training.TrainingExerciseItemRequest;
+
 import java.util.List;
 
 public class AddExercisesToTrainingRequest {

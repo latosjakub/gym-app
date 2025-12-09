@@ -1,6 +1,6 @@
 package com.latos.workout.controller;
 
-import com.latos.workout.dto.AddExercisesToTrainingRequest;
+import com.latos.workout.dto.exercise.AddExercisesToTrainingRequest;
 import com.latos.workout.model.Training;
 import com.latos.workout.service.TrainingService;
 

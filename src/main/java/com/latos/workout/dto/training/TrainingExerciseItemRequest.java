@@ -1,4 +1,4 @@
-package com.latos.workout.dto;
+package com.latos.workout.dto.training;
 
 public class TrainingExerciseItemRequest {
 

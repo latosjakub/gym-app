@@ -1,6 +1,8 @@
 package com.latos.workout.controller;
 
-import com.latos.workout.dto.CreateUserRequest;
+import com.latos.workout.dto.user.CreateUserRequest;
+import com.latos.workout.dto.user.UserCreateRequest;
+import com.latos.workout.dto.user.UserResponse;
 import com.latos.workout.model.User;
 import com.latos.workout.model.UserProfile;
 import com.latos.workout.service.UserService;
@@ -21,14 +23,14 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody CreateUserRequest createUserRequest){
-        User created = userService.createUserWithProfile(createUserRequest);
-        return ResponseEntity.ok(created);
+    public ResponseEntity<UserResponse> createUser(@RequestBody UserCreateRequest userCreateRequest){
+        UserResponse createdUser = userService.createUserWithProfile(userCreateRequest);
+        return ResponseEntity.ok(createdUser);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserWithProfie(@PathVariable Long id){
-        Optional<User> user = userService.getUser(id);
+    public ResponseEntity<UserResponse> getUserWithProfie(@PathVariable Long id){
+        Optional<UserResponse> userResponse = userService.getUserWithProfile(id);
         return user.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
