@@ -59,7 +59,7 @@ public class UserService {
 
 
 
-    public Optional<UserProfile> updateUserProfile(Long id, UserProfile userProfile) {
+    public Optional<UserProfileDto> updateUserProfile(Long id, UserProfileDto userProfileDto) {
         Optional<User> userOpt = userRepository.findById(id);
 
         if(userOpt.isEmpty()){
@@ -74,13 +74,13 @@ public class UserService {
             user.setProfile(profile);
         }
 
-        profile.setName(userProfile.getName());
-        profile.setLastname(userProfile.getLastname());
-        profile.setAge(userProfile.getAge());
-        profile.setWeight(userProfile.getWeight());
+        profile.setName(userProfileDto.getFirstName());
+        profile.setLastname(userProfileDto.getLastName());
+        profile.setAge(userProfileDto.getAge());
+        profile.setWeight(userProfileDto.getWeight());
 
         userRepository.save(user);
-        return Optional.of(profile);
+        return Optional.of(userProfileToUserProfileDto(profile));
 
 
 
